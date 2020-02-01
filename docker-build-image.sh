@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build --rm -t 'openwrt-builder:latest'
+docker build --rm -t 'openwrt-builder:latest' .
