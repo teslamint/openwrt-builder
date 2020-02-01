@@ -20,3 +20,16 @@
 ## applied tweaks
 
 - CONFIG_IPV6 is not set
+
+## docker build
+
+```
+# build image
+./docker-build-image.sh
+
+# build A604M image
+./docker-build.A604M.sh
+
+## build W2914NSv2 image
+./docker-build.W2914NSv2.sh
+```
