@@ -47,7 +47,9 @@ jobs:
           command: |
              tar Jxf ~/sdk/$SDK_FILE --strip=1
              cp -v ~/builder/conf/config.iptime_a604m .config
-             cp -v ~/builder/conf/feeds.conf feeds.conf
+             echo 'src-git base https://github.com/openwrt/openwrt' > feeds.conf
+             cat ~/builder/conf/feeds.conf | tee -a feeds.conf
+             cat feeds.conf
              ./scripts/feeds update -a > /dev/null
              git clone https://github.com/stangri/openwrt_packages ~/openwrt_packages
              cp -Rfv ~/openwrt_packages/vpn-policy-routing feeds/packages/net/
