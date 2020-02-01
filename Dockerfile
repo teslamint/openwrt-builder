@@ -14,7 +14,17 @@ RUN cp feeds.conf.default feeds.conf && \
     cp -Rfv ../openwrt_packages/luci-app-vpn-policy-routing feeds/luci/applications/ && \
     scripts/feeds update packages && \
     scripts/feeds update luci && \
-    scripts/feeds install -a
+    scripts/feeds install vpn-policy-routing && \
+    scripts/feeds install luci-ssl && \
+    scripts/feeds install luci-theme-material && \
+    scripts/feeds install luci-app-vpn-policy-routing && \
+    scripts/feeds install luci-app-shadowsocks-libev && \
+    scripts/feeds install openvpn-mbedtls && \
+    scripts/feeds install shadowsocks-libev-config && \
+    scripts/feeds install shadowsocks-libev-ss-redir && \
+    scripts/feeds install shadowsocks-libev-ss-rules && \
+    scripts/feeds install shadowsocks-libev-ss-tunnel && \
+    scripts/feeds uninstall luci-theme-bootstrap
 
 ADD entrypoint.sh /home/build/
 
