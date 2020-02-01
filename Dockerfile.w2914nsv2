@@ -1,0 +1,12 @@
+FROM teslamint/openwrt-builder:latest
+
+USER build
+WORKDIR /home/build/openwrt
+
+ADD conf/config.w2914nsv2 .config
+
+RUN make oldconfig && \
+    make tools/install && \
+    make -j1 toolchain/install
+
+ENTRYPOINT [ "make" ]
