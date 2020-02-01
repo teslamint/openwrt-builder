@@ -56,16 +56,15 @@ jobs:
              cp -Rfv ~/openwrt_packages/luci-app-vpn-policy-routing feeds/luci/applications/
              scripts/feeds update packages > /dev/null
              scripts/feeds update luci > /dev/null
-             make oldconfig > /dev/null
+             ./scripts/feeds install -a
              # enable BUILD_LOG
              sed -i 's/# CONFIG_BUILD_LOG is not set/CONFIG_BUILD_LOG=y/' .config
       - run:
-          name: Install & download source, check package, compile
+          name: Compile
           working_directory: ~/build_dir
           command: |
              set +o pipefail
-             ./scripts/feeds install -a
-             make
+             make -j1 V=c
       - store_artifacts:
           path: ~/build_dir/logs
       - store_artifacts:
