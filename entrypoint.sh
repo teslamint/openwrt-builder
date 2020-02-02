@@ -2,4 +2,4 @@
 
 cd /home/build/openwrt
 make oldconfig
-make
+make -j$(nproc)

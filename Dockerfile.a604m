@@ -6,7 +6,8 @@ WORKDIR /home/build/openwrt
 ADD conf/config.iptime_a604m .config
 
 RUN make oldconfig && \
-    make tools/install && \
-    make -j1 toolchain/install
+    make -j$(nproc) tools/install && \
+    make -j$(nproc) toolchain/install && \
+    rm -rf dl tmp
 
-ENTRYPOINT [ "make" ]
+ENTRYPOINT [ "make", "-j$(nproc)" ]

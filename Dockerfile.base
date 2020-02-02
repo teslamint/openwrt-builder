@@ -24,7 +24,8 @@ RUN cp feeds.conf.default feeds.conf && \
     scripts/feeds install shadowsocks-libev-ss-redir && \
     scripts/feeds install shadowsocks-libev-ss-rules && \
     scripts/feeds install shadowsocks-libev-ss-tunnel && \
-    scripts/feeds uninstall luci-theme-bootstrap
+    scripts/feeds uninstall luci-theme-bootstrap && \
+    rm -rf tmp
 
 ADD entrypoint.sh /home/build/
 
