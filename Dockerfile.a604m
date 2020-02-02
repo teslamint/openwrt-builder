@@ -1,4 +1,4 @@
-FROM teslamint/openwrt-builder:latest
+FROM teslamint/openwrt-builder:latest-base
 
 USER build
 WORKDIR /home/build/openwrt
