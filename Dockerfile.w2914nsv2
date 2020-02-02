@@ -4,10 +4,11 @@ USER build
 WORKDIR /home/build/openwrt
 
 ADD conf/config.w2914nsv2 .config
+ADD run-make.sh run-make.sh
 
 RUN make oldconfig && \
     make -j$(nproc) tools/install && \
     make -j$(nproc) toolchain/install && \
     rm -rf dl tmp
 
-ENTRYPOINT [ "make", "-j$(nproc)" ]
+ENTRYPOINT [ "./run-make.sh" ]
