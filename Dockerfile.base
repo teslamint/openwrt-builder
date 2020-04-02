@@ -24,6 +24,9 @@ RUN cp feeds.conf.default feeds.conf && \
     scripts/feeds install shadowsocks-libev-ss-redir && \
     scripts/feeds install shadowsocks-libev-ss-rules && \
     scripts/feeds install shadowsocks-libev-ss-tunnel && \
+    scripts/feeds install wireguard && \
+    scripts/feeds install luci-app-wireguard && \
+    scripts/feeds install luci-proto-wireguard && \
     scripts/feeds install libcap && \
     rm -rf tmp
 
