@@ -44,7 +44,6 @@ RUN git clone --depth=1 https://github.com/stangri/openwrt_packages
 
 WORKDIR /home/build/openwrt
 RUN cp feeds.conf.default feeds.conf && \
-    sed -i 's/luci.git$/luci.git;openwrt-19.07/' feeds.conf && \
     scripts/feeds update -a && \
     cp -Rfv ../openwrt_packages/vpn-policy-routing feeds/packages/net/ && \
     cp -Rfv ../openwrt_packages/luci-app-vpn-policy-routing feeds/luci/applications/ && \
