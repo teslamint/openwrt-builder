@@ -1,4 +1,40 @@
-FROM openwrtorg/packages-cci:latest
+FROM debian:10
+
+RUN apt-get update -qq &&\
+    apt-get install -y \
+        build-essential \
+        ccache \
+        clang \
+        curl \
+        file \
+        gawk \
+        gcc-multilib \
+        gettext \
+        git \
+        libdw-dev \
+        libelf-dev \
+        libncurses5-dev \
+        locales \
+        pv \
+        pwgen \
+        python \
+        python3 \
+        python3-pip \
+        qemu-utils \
+        rsync \
+        signify-openbsd \
+        subversion \
+        sudo \
+        swig \
+        unzip \
+        wget \
+        zlib1g-dev \
+        && apt-get -y autoremove \
+        && apt-get clean \
+        && rm -rf /var/lib/apt/lists/*
+
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN useradd -c "OpenWrt Builder" -m -d /home/build -G sudo -s /bin/bash build
 
 USER build
 WORKDIR /home/build
@@ -8,7 +44,6 @@ RUN git clone --depth=1 https://github.com/stangri/openwrt_packages
 
 WORKDIR /home/build/openwrt
 RUN cp feeds.conf.default feeds.conf && \
-    sed -i 's/luci.git$/luci.git;openwrt-19.07/' feeds.conf && \
     scripts/feeds update -a && \
     cp -Rfv ../openwrt_packages/vpn-policy-routing feeds/packages/net/ && \
     cp -Rfv ../openwrt_packages/luci-app-vpn-policy-routing feeds/luci/applications/ && \
